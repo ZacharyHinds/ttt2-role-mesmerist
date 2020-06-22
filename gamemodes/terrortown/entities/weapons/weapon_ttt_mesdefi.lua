@@ -144,8 +144,8 @@ if SERVER then
 			return
 		end
 
-		-- local reviveTime = GetConVar("ttt2_mesdefi_revive_time"):GetFloat()
-    local reviveTime = 3.0
+		local reviveTime = GetConVar("ttt2_mesdefi_revive_time"):GetFloat()
+    -- local reviveTime = 3.0
 
 		self:SetState(DEFI_BUSY)
 		self:SetStartTime(CurTime())

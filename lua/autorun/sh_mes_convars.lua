@@ -10,7 +10,7 @@ hook.Add("TTTUlxDynamicRCVars", "TTTUlxDynamicMesCVars", function(tbl)
     slider = true,
     min = 0,
     max = 5,
-    decimal = 2,
+    decimal = 0,
     desc = "ttt2_mesdefi_ammo (def. 1)"
   })
 
@@ -28,7 +28,7 @@ hook.Add("TTTUlxDynamicRCVars", "TTTUlxDynamicMesCVars", function(tbl)
     slider = true,
     min = 0,
     max = 3,
-    decimal = 0,
+    decimal = 1,
     desc = "ttt2_mesdefi_error_time (def 1.5)"
   })
 end)
