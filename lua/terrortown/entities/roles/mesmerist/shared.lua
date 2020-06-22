@@ -41,11 +41,11 @@ end
 
 if SERVER then
 
-  function ROLE:GiveRoleLoadout(ply, isRoleChange)
-    ply:GiveEquipmentWeapon("weapon_ttt_mesdefi")
-  end
+	function ROLE:GiveRoleLoadout(ply, isRoleChange)
+		ply:GiveEquipmentWeapon("weapon_ttt_mesdefi")
+	end
 
-  function ROLE:RemoveRoleLoadout(ply, isRoleChange)
-    ply:StripWeapon("weapon_ttt_mesdefi")
-  end
+	function ROLE:RemoveRoleLoadout(ply, isRoleChange)
+		ply:StripWeapon("weapon_ttt_mesdefi")
+	end
 end
