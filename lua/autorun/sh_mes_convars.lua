@@ -1,6 +1,7 @@
 CreateConVar("ttt2_mesdefi_error_time", 1.5, {FCVAR_ARCHIVE, FCVAR_NOTIFY})
 CreateConVar("ttt2_mesdefi_revive_time", 3.0, {FCVAR_ARCHIVE, FCVAR_NOTIFY})
 CreateConVar("ttt2_mesdefi_ammo", 1, {FCVAR_ARCHIVE, FCVAR_NOTIFY})
+CreateConVar("ttt2_mesdefi_res_thrall", 1, {FCVAR_ARCHIVE, FCVAR_NOTIFY})
 
 hook.Add("TTTUlxDynamicRCVars", "TTTUlxDynamicMesCVars", function(tbl)
   tbl[ROLE_MESMERIST] = tbl[ROLE_MESMERIST] or {}
@@ -30,5 +31,11 @@ hook.Add("TTTUlxDynamicRCVars", "TTTUlxDynamicMesCVars", function(tbl)
     max = 3,
     decimal = 1,
     desc = "ttt2_mesdefi_error_time (def 1.5)"
+  })
+
+  table.insert(tbl[ROLE_MESMERIST], {
+    cvar = "ttt2_mesdefi_res_thrall",
+    checkbox = true,
+    desc = "ttt2_mesdefi_res_thrall (def. 1)"
   })
 end)
