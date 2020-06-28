@@ -124,8 +124,8 @@ if SERVER then
 			LANG.Msg(owner, "mesdefi_error_already_reviving", nil, MSG_MSTACK_WARN)
 		elseif type == DEFI_ERROR_FAILED then
 			LANG.Msg(owner, "mesdefi_error_failed", nil, MSG_MSTACK_WARN)
-		elseif type == DEFI_ERROR_ZOMBIE then
-			LANG.Msg(owner, "mesdefi_error_zombie", nil, MSG_MSTACK_WARN)
+		elseif type == DEFI_ERROR_THRALL then
+			LANG.Msg(owner, "mesdefi_error_thrall", nil, MSG_MSTACK_WARN)
 		end
 	end
 
@@ -155,7 +155,7 @@ if SERVER then
 		ply:Revive(
 			reviveTime,
 			function(ply)
-        ply:SetRole(ROLE_TRAITOR)
+        ply:SetRole(ROLE_THRALL)
         SendFullStateUpdate()
       end,
 			nil,
@@ -239,8 +239,8 @@ if SERVER then
 			return
 		end
 
-		if CORPSE.GetPlayer(ent):GetSubRole() == ROLE_ZOMBIE then
-			self:Error(DEFI_ERROR_ZOMBIE)
+		if CORPSE.GetPlayer(ent):GetSubRole() == ROLE_THRALL and not GetConVar("ttt2_mesdefi_res_thrall"):GetBool() then
+			self:Error(DEFI_ERROR_THRALL)
 
 			return
 		end
