@@ -3,6 +3,10 @@ CreateConVar("ttt2_mesdefi_revive_time", 3.0, {FCVAR_ARCHIVE, FCVAR_NOTIFY})
 CreateConVar("ttt2_mesdefi_ammo", 1, {FCVAR_ARCHIVE, FCVAR_NOTIFY})
 CreateConVar("ttt2_mesdefi_res_thrall", 1, {FCVAR_ARCHIVE, FCVAR_NOTIFY})
 
+hook.Add("TTT2FinishedLoading", "mes_devicon", function() -- addon developer emblem for me ^_^
+  AddTTT2AddonDev("76561198049910438")
+end)
+
 hook.Add("TTTUlxDynamicRCVars", "TTTUlxDynamicMesCVars", function(tbl)
   tbl[ROLE_MESMERIST] = tbl[ROLE_MESMERIST] or {}
 
