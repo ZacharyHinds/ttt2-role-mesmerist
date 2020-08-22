@@ -13,35 +13,35 @@ hook.Add("TTTUlxDynamicRCVars", "TTTUlxDynamicMesCVars", function(tbl)
   tbl[ROLE_MESMERIST] = tbl[ROLE_MESMERIST] or {}
 
   table.insert(tbl[ROLE_MESMERIST], {
-    cvar = "ttt2_mesdefi_ammo",
-    slider = true,
-    min = 0,
-    max = 5,
-    decimal = 0,
-    desc = "ttt2_mesdefi_ammo (def. 1)"
+      cvar = "ttt2_mesdefi_ammo",
+      slider = true,
+      min = 0,
+      max = 5,
+      decimal = 0,
+      desc = "ttt2_mesdefi_ammo (def. 1)"
   })
 
   table.insert(tbl[ROLE_MESMERIST], {
-    cvar = "ttt2_mesdefi_revive_time",
-    slider = true,
-    min = 0,
-    max = 30,
-    decimal = 1,
-    desc = "ttt2_mesdefi_revive_time (def. 3.0)"
+      cvar = "ttt2_mesdefi_revive_time",
+      slider = true,
+      min = 0,
+      max = 30,
+      decimal = 1,
+      desc = "ttt2_mesdefi_revive_time (def. 3.0)"
   })
 
   table.insert(tbl[ROLE_MESMERIST], {
-    cvar = "ttt2_mesdefi_error_time",
-    slider = true,
-    min = 0,
-    max = 3,
-    decimal = 1,
-    desc = "ttt2_mesdefi_error_time (def 1.5)"
+      cvar = "ttt2_mesdefi_error_time",
+      slider = true,
+      min = 0,
+      max = 3,
+      decimal = 1,
+      desc = "ttt2_mesdefi_error_time (def 1.5)"
   })
 
   table.insert(tbl[ROLE_MESMERIST], {
-    cvar = "ttt2_mesdefi_res_thrall",
-    checkbox = true,
-    desc = "ttt2_mesdefi_res_thrall (def. 1)"
+      cvar = "ttt2_mesdefi_res_thrall",
+      checkbox = true,
+      desc = "ttt2_mesdefi_res_thrall (def. 1)"
   })
 end)
