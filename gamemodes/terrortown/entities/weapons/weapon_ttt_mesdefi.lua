@@ -156,6 +156,7 @@ if SERVER then
       reviveTime,
       function(ply)
         ply:SetRole(ROLE_THRALL)
+        ply:ResetConfirmPlayer()
         SendFullStateUpdate()
       end,
       nil,
