@@ -16,7 +16,7 @@ local DEFI_ERROR_LOST_TARGET = 3
 local DEFI_ERROR_NO_VALID_PLY = 4
 local DEFI_ERROR_ALREADY_REVIVING = 5
 local DEFI_ERROR_FAILED = 6
-local DEFI_ERROR_ZOMBIE = 7
+-- local DEFI_ERROR_ZOMBIE = 7
 
 SWEP.Base = "weapon_tttbase"
 
@@ -150,12 +150,19 @@ if SERVER then
     self:SetState(DEFI_BUSY)
     self:SetStartTime(CurTime())
     self:SetReviveTime(reviveTime)
+    local mes_team = self:GetOwner():GetTeam()
 
     -- start revival
     ply:Revive(
       reviveTime,
-      function(ply)
-        ply:SetRole(ROLE_THRALL)
+      function()
+        if GetConVar("ttt2_thr_team_inherit"):GetBool() then
+          ply:SetRole(ROLE_THRALL, mes_team)
+          -- print("[Thrall] Inherited Team: " .. ply:GetTeam())
+        else
+          ply:SetRole(ROLE_THRALL, TEAM_TRAITOR)
+          -- print("[Thrall] Defaulting to Team Traitor")
+        end
         ply:ResetConfirmPlayer()
         SendFullStateUpdate()
       end,
