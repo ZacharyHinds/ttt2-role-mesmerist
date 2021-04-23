@@ -150,7 +150,8 @@ if SERVER then
     self:SetState(DEFI_BUSY)
     self:SetStartTime(CurTime())
     self:SetReviveTime(reviveTime)
-    local mes_team = self:GetOwner():GetTeam()
+    local owner = self:GetOwner()
+    local mes_team = owner:GetTeam()
 
     -- start revival
     ply:Revive(
@@ -166,7 +167,14 @@ if SERVER then
         ply:ResetConfirmPlayer()
         SendFullStateUpdate()
       end,
-      nil,
+      function()
+        if not IsValid(owner) or not owner:IsPlayer() or not owner:Alive() or owner:IsSpec() then
+          return false 
+        else
+          self:FinishRevival()
+          return true
+        end
+      end,
       true,
       true
     )
@@ -215,7 +223,7 @@ if SERVER then
     -- local revive_time = 1.5
 
     if CurTime() >= self:GetStartTime() + revive_time - 0.01 then
-      self:FinishRevival()
+      -- self:FinishRevival()
     elseif not owner:KeyDown(IN_ATTACK) or owner:GetEyeTrace(MASK_SHOT_HULL).Entity ~= self.defiTarget then
       self:CancelRevival()
       self:Error(DEFI_ERROR_LOST_TARGET)
