@@ -69,10 +69,15 @@ if SERVER then
   util.AddNetworkString("RequestMesRevivalStatus")
   util.AddNetworkString("ReceiveMesRevivalStatus")
 
+  function SWEP:SafeRemove()
+    hook.Remove("PlayerSwitchWeapon", "TTT2MesdefiSwitch")
+    self:Remove()
+  end
+
   function SWEP:OnDrop()
     self.BaseClass.OnDrop(self)
 
-    self:Remove()
+    self:SafeRemove()
   end
 
   function SWEP:SetState(state)
@@ -150,6 +155,13 @@ if SERVER then
     self:SetState(DEFI_BUSY)
     self:SetStartTime(CurTime())
     self:SetReviveTime(reviveTime)
+    hook.Add("PlayerSwitchWeapon", "TTT2MesdefiSwitch", function(ply, old, new)
+      if old:GetClass() == "weapon_ttt_mesdefi" then
+        return true 
+      else
+        hook.Remove("PlayerSwitchWeapon", "TTT2MesdefiSwitch")
+      end
+    end)
     local owner = self:GetOwner()
     local mes_team = owner:GetTeam()
 
@@ -186,11 +198,12 @@ if SERVER then
 
   function SWEP:FinishRevival()
     self:Reset()
+    hook.Remove("PlayerSwitchWeapon", "TTT2MesdefiSwitch")
 
     self:SetClip1(self:Clip1() - 1)
 
     if self:Clip1() < 1 then
-      self:Remove()
+      self:SafeRemove()
 
       RunConsoleCommand("lastinv")
     end
@@ -200,6 +213,7 @@ if SERVER then
     local ply = CORPSE.GetPlayer(self.defiTarget)
 
     self:Reset()
+    hook.Remove("PlayerSwitchWeapon", "TTT2MesdefiSwitch")
 
     if not IsValid(ply) then return end
 
@@ -224,7 +238,7 @@ if SERVER then
 
     if CurTime() >= self:GetStartTime() + revive_time - 0.01 then
       -- self:FinishRevival()
-    elseif not owner:KeyDown(IN_ATTACK) or owner:GetEyeTrace(MASK_SHOT_HULL).Entity ~= self.defiTarget then
+    elseif not owner:KeyDown(IN_ATTACK) or owner:GetEyeTrace(MASK_SHOT_HULL).Entity ~= self.defiTarget or owner:GetActiveWeapon():GetClass() ~= self:GetClass() then
       self:CancelRevival()
       self:Error(DEFI_ERROR_LOST_TARGET)
     end
