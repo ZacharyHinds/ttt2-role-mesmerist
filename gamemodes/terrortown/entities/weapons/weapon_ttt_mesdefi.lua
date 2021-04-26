@@ -177,6 +177,7 @@ if SERVER then
           -- print("[Thrall] Defaulting to Team Traitor")
         end
         ply:ResetConfirmPlayer()
+        events.Trigger(EVENT_MES_DEFIB, owner, ply)
         SendFullStateUpdate()
       end,
       function()

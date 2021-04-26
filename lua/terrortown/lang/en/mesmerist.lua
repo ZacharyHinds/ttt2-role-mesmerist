@@ -21,3 +21,8 @@ L["mesdefi_error_no_valid_ply"] = "You can't revive this player since they are n
 L["mesdefi_error_already_reviving"] = "You can't revive this player since they are already reviving."
 L["mesdefi_error_failed"] = "Revival attempt failed. Please try again."
 L["mesdefi_error_thrall"] = "You can't revive a thrall!"
+
+
+--EVENT STRINGS
+L["title_event_mes_defib"] = "A player was revived as a Thrall"
+L["desc_event_mes_defib"] = "{mesmerist} revived {thrall} as a Thrall"
