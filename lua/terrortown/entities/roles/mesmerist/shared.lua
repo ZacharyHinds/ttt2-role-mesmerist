@@ -41,6 +41,88 @@ end
 
 if SERVER then
 
+  ROLE.CustomRadar = function(ply)
+    local weps = ply:GetWeapons()
+    local hasDefib = false
+    for i = 1, #weps do
+      if weps[i]:GetClass() == "weapon_ttt_mesdefi" then
+        hasDefib = true
+      end
+    end
+    if not hasDefib then return end
+
+    local targets = {}
+    local corpses = ents.FindByClass("prop_ragdoll")
+
+    for i = 1, #corpses do
+      local rag = corpses[i]
+      if not rag.player_ragdoll then continue end
+
+      local pos = rag:LocalToWorld(rag:OBBCenter())
+
+      pos.x = math.Round(pos.x)
+      pos.y = math.Round(pos.y)
+      pos.z = math.Round(pos.z)
+
+      targets[#targets + 1] = {
+        subrole = -1,
+        pos = pos
+      }
+    end
+
+    -- local plys = util.GetAlivePlayers()
+    -- for i = 1, #plys do
+    --   local pl = plys[i]
+    --   if not IsValid(pl) or pl == ply then continue end
+      
+    --   local pos = pl:LocalToWorld(pl:OBBCenter())
+
+    --   pos.x = math.Round(pos.x)
+    --   pos.y = math.Round(pos.y)
+    --   pos.z = math.Round(pos.z)
+
+    --   local subrole = ROLE_INNOCENT
+    --   local team = TEAM_INNOCENT
+
+    --   if pl:GetTeam() == ply:GetTeam() or (ply:GetTeam() == TEAM_TRAITOR and pl:GetSubRole() == ROLE_SPY)  then
+    --     subrole = ply:GetSubRole()
+    --     team = ply:GetTeam()
+    --   elseif pl:GetTeam() == TEAM_JESTER then
+    --     subrole = ROLE_JESTER
+    --     team = TEAM_JESTER
+    --   end
+
+    --   targets[#targets + 1] = {
+    --     subrole = subrole,
+    --     team = team,
+    --     pos = pos
+    --   }
+    -- end
+
+    local decoys = ents.FindByClass("ttt_decoy")
+
+    for i = 1, #decoys do
+      local dec = decoys[i]
+
+      if not IsValid(dec) then continue end
+
+      local pos = dec:LocalToWorld(dec:OBBCenter())
+
+      pos.x = math.Round(pos.x)
+      pos.y = math.Round(pos.y)
+      pos.z = math.Round(pos.z)
+
+      targets[#targets + 1] = {
+        subrole = ROLE_INNOCENT,
+        team = TEAM_INNOCENT,
+        pos = pos
+      }
+    end
+    if #targets > 0 then
+      return targets
+    end
+  end
+
   function ROLE:GiveRoleLoadout(ply, isRoleChange)
     ply:GiveEquipmentWeapon("weapon_ttt_mesdefi")
   end
