@@ -21,4 +21,4 @@ L["mesdefi_error_no_valid_ply"] = "No puedes revivir a este jugador ya que su cu
 L["mesdefi_error_already_reviving"] = "No puedes revivir a este jugador porque ya lo están reviviendo."
 L["mesdefi_error_failed"] = "Intento de revivir fallido. Intenta de nuevo."
 L["mesdefi_error_thrall"] = "¡No puedes revivir a un Hipnotizado!"
--- L["mesdefi_error_player_elive"] = "You can't revive this player, they are already alive."
+-- L["mesdefi_error_player_alive"] = "You can't revive this player, they are already alive."
