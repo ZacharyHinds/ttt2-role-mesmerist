@@ -21,3 +21,4 @@ L["mesdefi_error_no_valid_ply"] = "Вы не можете оживить это�
 L["mesdefi_error_already_reviving"] = "Вы не можете оживить этого игрока, так как он уже оживает."
 L["mesdefi_error_failed"] = "Попытка возрождения не удалась. Пожалуйста, попробуйте ещё раз."
 L["mesdefi_error_thrall"] = "Вы не можете оживить раба!"
+-- L["mesdefi_error_player_elive"] = "You can't revive this player, they are already alive."
