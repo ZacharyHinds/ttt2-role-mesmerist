@@ -191,8 +191,12 @@ if SERVER then
       end,
       function(p)
         if not IsValid(owner) or not owner:IsPlayer() or not owner:Alive() or owner:IsSpec() then
+          self:CancelRevival()
+          self:Error(DEFI_ERROR_FAILED)
           return false 
-        elseif not IsValid(p) or not p:Alive() or (SpecDM and p:IsGhost()) then
+        elseif not IsValid(p) or (p:Alive() and not (SpecDM and p:IsGhost())) then
+          self:CancelRevival()
+          self:Error(DEFI_ERROR_FAILED)
           return false
         else
           self:FinishRevival()
