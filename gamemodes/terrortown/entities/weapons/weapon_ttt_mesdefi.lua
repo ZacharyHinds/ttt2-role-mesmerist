@@ -16,6 +16,7 @@ local DEFI_ERROR_LOST_TARGET = 3
 local DEFI_ERROR_NO_VALID_PLY = 4
 local DEFI_ERROR_ALREADY_REVIVING = 5
 local DEFI_ERROR_FAILED = 6
+local DEFI_ERROR_PLAYER_ALIVE = 7
 -- local DEFI_ERROR_ZOMBIE = 7
 
 SWEP.Base = "weapon_tttbase"
@@ -131,6 +132,8 @@ if SERVER then
       LANG.Msg(owner, "mesdefi_error_failed", nil, MSG_MSTACK_WARN)
     elseif type == DEFI_ERROR_THRALL then
       LANG.Msg(owner, "mesdefi_error_thrall", nil, MSG_MSTACK_WARN)
+    elseif type == DEFI_ERROR_PLAYER_ALIVE then
+      LANG.Msg(owner, "mesdefi_error_player_alive", nil, MSG_MSTACK_WARN)
     end
   end
 
@@ -148,6 +151,12 @@ if SERVER then
 
       return
     end
+
+    if ply:Alive() and not (SpecDM and not ply:IsGhost()) then
+			self:Error(DEFI_ERROR_PLAYER_ALIVE)
+
+			return
+		end
 
     local reviveTime = GetConVar("ttt2_mesdefi_revive_time"):GetFloat()
     -- local reviveTime = 3.0
@@ -180,9 +189,11 @@ if SERVER then
         events.Trigger(EVENT_MES_DEFIB, owner, ply)
         SendFullStateUpdate()
       end,
-      function()
+      function(p)
         if not IsValid(owner) or not owner:IsPlayer() or not owner:Alive() or owner:IsSpec() then
           return false 
+        elseif not IsValid(p) or not p:Alive() or (SpecDM and p:IsGhost()) then
+          return false
         else
           self:FinishRevival()
           return true
@@ -235,6 +246,7 @@ if SERVER then
 
     local owner = self:GetOwner()
     local revive_time = GetConVar("ttt2_mesdefi_revive_time"):GetFloat()
+    local target = CORPSE.GetPlayer(self.defiTarget)
     -- local revive_time = 1.5
 
     if CurTime() >= self:GetStartTime() + revive_time - 0.01 then
@@ -242,6 +254,9 @@ if SERVER then
     elseif not owner:KeyDown(IN_ATTACK) or owner:GetEyeTrace(MASK_SHOT_HULL).Entity ~= self.defiTarget or owner:GetActiveWeapon():GetClass() ~= self:GetClass() then
       self:CancelRevival()
       self:Error(DEFI_ERROR_LOST_TARGET)
+    elseif target:Alive() and not (SpecDM and not target:IsGhost()) then
+      self:CancelRevival()
+      self:Error(DEFI_ERROR_PLAYER_ALIVE)
     end
   end
 
