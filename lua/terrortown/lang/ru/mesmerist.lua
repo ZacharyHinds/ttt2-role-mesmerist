@@ -2,7 +2,6 @@ L = LANG.GetLanguageTableReference("ru")
 
 -- GENERAL ROLE LANGUAGE STRINGS
 L[MESMERIST.name] = "Месмерист"
-L[MESMERIST.defaultTeam] = "Команда месмеристов"
 L["info_popup_" .. MESMERIST.name] = [[Теперь твоя очередь! Попытайтесь заставить некоторых мёртвых игроков сражаться на вашей стороне!]]
 L["body_found_" .. MESMERIST.abbr] = "Он был месмеристом!"
 L["search_role_" .. MESMERIST.abbr] = "Этот человек был месмеристом!"

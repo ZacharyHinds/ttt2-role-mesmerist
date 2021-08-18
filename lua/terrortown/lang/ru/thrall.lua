@@ -2,7 +2,6 @@ L = LANG.GetLanguageTableReference("ru")
 
 -- GENERAL ROLE LANGUAGE STRINGS
 L[THRALL.name] = "Раб"
-L[THRALL.defaultTeam] = "Команда рабов"
 L["info_popup_" .. THRALL.name] = [[Вы были возрождены предателем!]]
 L["body_found_" .. THRALL.abbr] = "Он был рабом!"
 L["search_role_" .. THRALL.abbr] = "Этот человек был рабом!"
