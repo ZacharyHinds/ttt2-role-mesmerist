@@ -133,3 +133,47 @@ if SERVER then
     ply:StripWeapon("weapon_ttt_mesdefi")
   end
 end
+
+if CLIENT then
+  hook.Add("TTT2FinishedLoading", "mes_devicon", function()
+    AddTTT2AddonDev("76561198049910438")
+  end)
+
+  function ROLE:AddToSettingsMenu(parent)
+    local form = vgui.CreateTTT2Form(parent, "header_roles_additional")
+
+    form:MakeSlider({
+      serverConvar = "ttt2_mesdefi_ammo",
+      label = "label_ttt2_mesdefi_ammo",
+      min = 0,
+      max = 5,
+      decimal = 0
+    })
+
+    form:MakeSlider({
+      serverConvar = "ttt2_mesdefi_revive_time",
+      label = "label_ttt2_mesdefi_revive_time",
+      min = 0,
+      max = 30,
+      decimal = 1
+    })
+
+    form:MakeSlider({
+      serverConvar = "ttt2_mesdefi_error_time",
+      label = "label_ttt2_mesdefi_error_time",
+      min = 0,
+      max = 3,
+      decimal = 1
+    })
+
+    form:MakeCheckBox({
+      serverConvar = "ttt2_mesdefi_res_thrall",
+      label = "label_ttt2_mesdefi_res_thrall"
+    })
+
+    form:MakeCheckBox({
+      serverConvar = "ttt2_thr_team_inherit",
+      label = "label_ttt2_thr_team_inherit"
+    })
+  end
+end

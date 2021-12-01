@@ -21,3 +21,15 @@ L["mesdefi_error_already_reviving"] = "Вы не можете оживить э�
 L["mesdefi_error_failed"] = "Попытка возрождения не удалась. Пожалуйста, попробуйте ещё раз."
 L["mesdefi_error_thrall"] = "Вы не можете оживить раба!"
 -- L["mesdefi_error_player_alive"] = "You can't revive this player, they are already alive."
+
+-- --EVENT STRINGS
+-- L["title_event_mes_defib"] = "A player was revived as a Thrall"
+-- L["desc_event_mes_defib"] = "{mesmerist} revived {thrall} as a Thrall"
+
+
+-- --SETTINGS STRINGS
+-- L["label_ttt2_mesdefi_ammo"] = "Defibrillator ammo"
+-- L["label_ttt2_mesdefi_revive_time"] = "Time it takes to revive with defibrillator"
+-- L["label_ttt2_mesdefi_error_time"] = "Time it takes to recharge defibrillator"
+-- L["label_ttt2_mesdefi_res_thrall"] = "Can Thrals be re-revived with defibrillator"
+-- L["label_ttt2_thr_team_inherit"] = "Thralls inherit team of Mesmerist"

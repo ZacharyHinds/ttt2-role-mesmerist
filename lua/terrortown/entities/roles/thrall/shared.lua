@@ -33,7 +33,3 @@ end
 function ROLE:Initialize()
   roles.SetBaseRole(self, ROLE_TRAITOR)
 end
-
-if SERVER then
-
-end
