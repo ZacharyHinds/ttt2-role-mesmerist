@@ -20,6 +20,8 @@ function ROLE:PreInitialize()
   self.preventTraitorAloneCredits = false
   self.notSelectable = true
 
+  self.isOmniscientRole = true
+
   self.defaultTeam = TEAM_TRAITOR
 
   self.conVarData = {
